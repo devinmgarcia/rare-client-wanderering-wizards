@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 
 export const CategoryContext = React.createContext();
+const api = "https://rare-serverer.herokuapp.com"
 
 export const CategoryProvider = (props) => {
 	const [categories, setCategories] = useState([]);
 
 	const getCategories = () => {
 		return (
-			fetch("http://localhost:8000/categories",
+			fetch(`${api}/categories`,
 			{
 				headers: {
 					Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
@@ -18,7 +19,7 @@ export const CategoryProvider = (props) => {
 	};
 
 	const addCategory = (category) => {
-		return fetch("http://localhost:8000/categories", {
+		return fetch(`${api}/categories`, {
 			method: "POST",
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
@@ -30,7 +31,7 @@ export const CategoryProvider = (props) => {
 	};
 
 	const deleteCategory = (categoryId) => {
-		return fetch(`http://localhost:8000/categories/${categoryId}`, {
+		return fetch(`${api}/categories/${categoryId}`, {
 			method: "DELETE",
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
@@ -39,7 +40,7 @@ export const CategoryProvider = (props) => {
 	};
 
 	const updateCategory = (categoryObj) => {
-		return fetch(`http://localhost:8000/categories/${categoryObj.id}`, {
+		return fetch(`${api}/categories/${categoryObj.id}`, {
 			method: "PUT",
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,

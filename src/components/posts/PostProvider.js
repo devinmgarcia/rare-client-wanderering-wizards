@@ -2,6 +2,7 @@ import React, { useState, createContext } from "react";
 
 // The context is imported and used by individual components that need data
 export const PostContext = createContext();
+const api = "https://rare-serverer.herokuapp.com"
 
 // This component establishes what data can be used.
 export const PostProvider = (props) => {
@@ -10,7 +11,7 @@ export const PostProvider = (props) => {
 
 	const getPostsByUserId = () => {
 		return (
-			fetch(`http://localhost:8000/posts/myposts`,
+			fetch(`${api}/posts/myposts`,
 			{
 				headers: {
 					Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
@@ -22,7 +23,7 @@ export const PostProvider = (props) => {
 
 	const getPosts = () => {
 		return (
-			fetch(`http://localhost:8000/posts`,
+			fetch(`${api}/posts`,
 			{
 				headers: {
 					Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
@@ -33,7 +34,7 @@ export const PostProvider = (props) => {
 	};
 
 	const deletePost = (postId) => {
-		return fetch(`http://localhost:8000/posts/${postId}`, {
+		return fetch(`${api}/posts/${postId}`, {
 			method: "DELETE",
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
@@ -42,7 +43,7 @@ export const PostProvider = (props) => {
 	};
   
 	const createPost = (postObject) => {
-		return fetch("http://localhost:8000/posts", {
+		return fetch(`${api}/posts`, {
 			method: "POST",
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
@@ -54,7 +55,7 @@ export const PostProvider = (props) => {
 
 	const getPostsDetails = (postId) => {
 		return (
-			fetch(`http://localhost:8000/posts/${postId}`,
+			fetch(`${api}/posts/${postId}`,
 			{
 				headers: {
 					"Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
@@ -66,7 +67,7 @@ export const PostProvider = (props) => {
 
 	const getPost = (postId) => {
 		return (
-			fetch(`http://localhost:8000/posts/${postId}`,
+			fetch(`${api}/posts/${postId}`,
 			{
 				headers: {
 					"Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
@@ -76,7 +77,7 @@ export const PostProvider = (props) => {
 	};
 
 	const updatePost = (update_post) => {
-		return fetch(`http://localhost:8000/posts/${update_post.id}`, {
+		return fetch(`${api}/posts/${update_post.id}`, {
 			method: "PUT",
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
@@ -87,7 +88,7 @@ export const PostProvider = (props) => {
 	};
 
 	const managePostApproval = (post) => {
-		return fetch(`http://localhost:8000/posts/${post.id}/approve`, {
+		return fetch(`${api}/posts/${post.id}/approve`, {
 			method: "PUT",
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,

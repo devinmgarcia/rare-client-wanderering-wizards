@@ -1,12 +1,13 @@
 import React, {useState} from "react"
 
 export const TagContext = React.createContext()
+const api = "https://rare-serverer.herokuapp.com"
 
 export const TagProvider = (props) => {
     const [tags, setTags] = useState([])
 
     const getTags = () => {
-        return fetch("http://localhost:8000/tags",
+        return fetch(`${api}/tags`,
         {
             headers: {
                 Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
@@ -17,7 +18,7 @@ export const TagProvider = (props) => {
     }
 
     const addTag = Tag => {
-        return fetch("http://localhost:8000/tags", {
+        return fetch(`${api}/tags`, {
             method: "POST",
             headers: {
                 Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
@@ -29,7 +30,7 @@ export const TagProvider = (props) => {
     }
 
     const deleteTag = (tagId) => {
-        return fetch(`http://localhost:8000/tags/${tagId}`, {
+        return fetch(`${api}/tags/${tagId}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Token ${localStorage.getItem("rare_user_id")}`
@@ -38,7 +39,7 @@ export const TagProvider = (props) => {
     }
 
     const updateTag = (tagObj) => {
-        return fetch(`http://localhost:8000/tags/${tagObj.id}`, {
+        return fetch(`${api}/tags/${tagObj.id}`, {
           method: "PUT",
           headers: {
             Authorization: `Token ${localStorage.getItem("rare_user_id")}`,

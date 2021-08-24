@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./Auth.css";
 import registerPlaceholder from "../../images/registerImagePlaceholder.png";
+const api = "https://rare-serverer.herokuapp.com"
 
 export const Register = (props) => {
 	const firstName = useRef();
@@ -46,7 +47,7 @@ export const Register = (props) => {
 				active: 1,
 			};
 
-			return fetch("http://127.0.0.1:8000/register", {
+			return fetch(`${api}/register`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

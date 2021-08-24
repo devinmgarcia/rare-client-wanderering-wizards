@@ -2,13 +2,14 @@ import React, { useState, createContext } from "react";
 
 // The context is imported and used by individual components that need data
 export const CommentContext = createContext();
+const api = "https://rare-serverer.herokuapp.com"
 
 export const CommentProvider = (props) => {
 	const [comments, setComments] = useState([]);
   const [comment, setComment ] = useState({})
 
 	const getComments = () => {
-		return fetch(`http://localhost:8000/comments`, {
+		return fetch(`${api}/comments`, {
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
 			},
@@ -18,7 +19,7 @@ export const CommentProvider = (props) => {
 	};
 
 	const createComment = (commentObject) => {
-		return fetch("http://localhost:8000/comments", {
+		return fetch(`${api}/comments`, {
 			method: "POST",
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
@@ -29,7 +30,7 @@ export const CommentProvider = (props) => {
 	};
 
   const getCommentById = (commentId) => {
-    return fetch(`http://localhost:8000/comments/${commentId}`, {
+    return fetch(`${api}/comments/${commentId}`, {
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
 			},
@@ -38,7 +39,7 @@ export const CommentProvider = (props) => {
   }
 
   const getCommentsByPostId = (postId) => {
-		return fetch(`http://localhost:8000/posts/comments/${postId}`, {
+		return fetch(`${api}/posts/comments/${postId}`, {
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
 			},
@@ -48,7 +49,7 @@ export const CommentProvider = (props) => {
   }
 
 	const deleteComment = (commentId) => {
-		return fetch(`http://localhost:8000/comments/${commentId}`, {
+		return fetch(`${api}/comments/${commentId}`, {
 			method: "DELETE",
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,
@@ -57,7 +58,7 @@ export const CommentProvider = (props) => {
 	}
 
   const updateComment = (update_comment) => {
-		return fetch(`http://localhost:8000/comments/${update_comment.id}`, {
+		return fetch(`${api}/comments/${update_comment.id}`, {
 			method: "PUT",
 			headers: {
 				Authorization: `Token ${localStorage.getItem("rare_user_id")}`,

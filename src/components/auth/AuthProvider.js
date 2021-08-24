@@ -1,12 +1,13 @@
 import React, { useState } from "react"
 
 export const ProfileContext = React.createContext()
+const api = "https://rare-serverer.herokuapp.com"
 
 export const ProfileProvider = (props) => {
     const [profile, setProfile] = useState({events:[]})
 
     const getProfile = () => {
-        return fetch("http://localhost:8000/profile", {
+        return fetch(`${api}/profile`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
