@@ -166,7 +166,7 @@ export const PostList = (props) => {
 					<article className="followSection">
 					<div style={{marginBottom: "1.5rem", fontSize: ".8rem", fontWeight: "bolder"}}>WHO TO FOLLOW</div>
 					<div className="recCats">
-						{authors?.slice(1,).sort(()=> Math.random()-0.5).slice(0, 4).map((author) => {
+						{authors?.slice(2,).sort(()=> Math.random()-0.5).slice(0, 4).map((author) => {
 							return (
 								<div className="author">
 									<div>
